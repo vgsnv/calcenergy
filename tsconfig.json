@@ -6,10 +6,13 @@
     "isolatedModules": true,
     "jsx": "react",
     "lib": ["es6"],
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "noEmit": true,
-    "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+
+    "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
+    "strict": false /* Enable all strict type-checking options. */,
+    "resolveJsonModule": true
   },
   "exclude": [
     "node_modules",
