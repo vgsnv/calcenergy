@@ -1,13 +1,13 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux'
 
-import activities, { Activities } from "./activities";
+import activities, { Activities } from './activities'
 
 export interface DbState {
-  activities: Activities;
+	activities: Activities
 }
 
 const db = combineReducers({
-  activities
-});
+	activities,
+})
 
-export default db;
+export default db

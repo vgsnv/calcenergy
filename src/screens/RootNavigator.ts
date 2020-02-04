@@ -1,13 +1,13 @@
-import MealListStack from "./MealList";
-import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
+import MealListStack from './MealList'
 
 const RootNavigator = createSwitchNavigator(
-  {
-    MealList: MealListStack
-  },
-  {
-    initialRouteName: "MealList"
-  }
-);
+	{
+		MealList: MealListStack,
+	},
+	{
+		initialRouteName: 'MealList',
+	}
+)
 
-export const Root = createAppContainer(RootNavigator);
+export const Root = createAppContainer(RootNavigator)

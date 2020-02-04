@@ -1,19 +1,10 @@
 import React, { FC, useEffect } from 'react'
-
-import { useDispatch } from 'react-redux'
-import init from './thunks/init'
-
-import {
-	Page,
-	PageTitleContainer,
-	PageTitleContainerText,
-	CaptionContainer,
-	CaptionContainerText,
-	BodyContainer,
-} from './stylesComponents'
-
+import { StatusBar, Text, TouchableHighlight } from 'react-native'
 import { NavigationInjectedProps } from 'react-navigation'
-import { StatusBar } from 'react-native'
+import { useDispatch } from 'react-redux'
+import { BodyContainer, Page, PageTitleContainer, PageTitleContainerText } from './stylesComponents'
+import init from './thunks/init'
+import toNext from './thunks/toNext'
 
 export interface Props {}
 
@@ -27,18 +18,37 @@ export const MainScreen: FC<Props & Dispatch & NavigationInjectedProps> = props 
 	useEffect(() => {
 		dispatch(init())
 	}, [])
+
+	const onPressItem = () => dispatch(toNext(props.navigation))
+
 	return (
 		<>
 			<StatusBar barStyle="dark-content" />
 			<Page>
 				<BodyContainer>
 					<PageTitleContainer>
-						<PageTitleContainerText>Загрузи фото на аватар</PageTitleContainerText>
+						<PageTitleContainerText>Самый главный экран</PageTitleContainerText>
 					</PageTitleContainer>
 
-					<CaptionContainer>
-						<CaptionContainerText>Будет отображаться в ленте райдеров</CaptionContainerText>
-					</CaptionContainer>
+					<TouchableHighlight
+						style={{
+							height: 45,
+							width: 250,
+							marginTop: 45,
+							backgroundColor: 'blue',
+						}}
+						onPress={onPressItem}
+					>
+						<Text
+							style={{
+								color: 'white',
+								textAlign: 'center',
+								fontSize: 18,
+							}}
+						>
+							На экран 2
+						</Text>
+					</TouchableHighlight>
 				</BodyContainer>
 			</Page>
 		</>

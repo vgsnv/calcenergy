@@ -1,11 +1,7 @@
 import React from 'react'
-
-import { PersistGate } from 'redux-persist/integration/react'
-
 import { Provider } from 'react-redux'
-
+import { PersistGate } from 'redux-persist/integration/react'
 import { Root } from './src/screens/RootNavigator'
-
 import createStore from './src/store'
 
 const { store, persistor } = createStore()
