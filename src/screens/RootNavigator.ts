@@ -1,12 +1,12 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
-import MealListStack from './MealList'
+import ProductsStack from './Products'
 
 const RootNavigator = createSwitchNavigator(
 	{
-		MealList: MealListStack,
+		Products: ProductsStack,
 	},
 	{
-		initialRouteName: 'MealList',
+		initialRouteName: 'Products',
 	}
 )
 

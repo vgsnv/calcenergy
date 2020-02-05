@@ -1,27 +1,18 @@
-import React, { FC, useEffect } from 'react'
-import { StatusBar, Text, TouchableOpacity, View } from 'react-native'
+import React, { FC } from 'react'
+import { Text, TouchableOpacity, View } from 'react-native'
 import { NavigationInjectedProps } from 'react-navigation'
 import { useDispatch } from 'react-redux'
-import { BodyContainer, Page, PageTitleContainer, PageTitleContainerText } from './stylesComponents'
 import done from './thunks/done'
-import init from './thunks/init'
 
 export interface Props {}
 
 export interface Dispatch {}
 
-interface State {}
-
-const Screen02Screen: FC<Props & Dispatch & NavigationInjectedProps> = props => {
+const Header: FC<Props & Dispatch & NavigationInjectedProps> = props => {
 	const dispatch = useDispatch()
-
-	useEffect(() => {
-		dispatch(init())
-	}, [])
 
 	return (
 		<>
-			<StatusBar barStyle="dark-content" />
 			<View
 				style={{
 					flexDirection: 'row',
@@ -42,15 +33,8 @@ const Screen02Screen: FC<Props & Dispatch & NavigationInjectedProps> = props => 
 					<Text style={{ textAlign: 'center' }}>Назад</Text>
 				</TouchableOpacity>
 			</View>
-			<Page>
-				<BodyContainer>
-					<PageTitleContainer>
-						<PageTitleContainerText>Второй экран</PageTitleContainerText>
-					</PageTitleContainer>
-				</BodyContainer>
-			</Page>
 		</>
 	)
 }
 
-export { Screen02Screen }
+export { Header }

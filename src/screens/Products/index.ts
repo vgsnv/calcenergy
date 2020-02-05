@@ -1,18 +1,18 @@
 import { createStackNavigator } from 'react-navigation-stack'
-import { MainScreen } from './Main'
+import { ProductList } from './ProductList'
 import { Screen02Screen } from './Screen02'
 
 export default createStackNavigator(
 	{
-		Main: {
-			screen: MainScreen,
+		ProductList: {
+			screen: ProductList,
 		},
 		Screen02: {
 			screen: Screen02Screen,
 		},
 	},
 	{
-		mode: 'card',
+		mode: 'modal',
 		headerMode: null,
 		navigationOptions: {
 			header: null,

@@ -24,16 +24,3 @@ export const PageTitleContainerText = styled.Text`
 	line-height: 21px;
 	letter-spacing: 0.32;
 `
-
-export const CaptionContainer = styled.View`
-	height: 55px;
-	padding-top: 10px;
-`
-
-export const CaptionContainerText = styled.Text`
-	font-size: 13px;
-	font-weight: 400;
-	color: #494949;
-	line-height: 22px;
-	letter-spacing: 0.31;
-`
