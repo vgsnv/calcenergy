@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { PanResponder, View, ViewStyle } from 'react-native'
 
 export enum SliderDirect {

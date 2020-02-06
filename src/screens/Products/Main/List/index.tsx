@@ -4,7 +4,7 @@ import { FlatList } from 'react-native-gesture-handler'
 import { NavigationInjectedProps } from 'react-navigation'
 import { useDispatch, useSelector } from 'react-redux'
 import { Store } from '../../../../store'
-import { Header } from './Header/Header'
+import { Header } from './Header'
 import {
 	BigText,
 	BodyContainer,
