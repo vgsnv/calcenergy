@@ -2,15 +2,17 @@ import React, { FC, useEffect } from 'react'
 import { StatusBar } from 'react-native'
 import { NavigationInjectedProps } from 'react-navigation'
 import { useDispatch } from 'react-redux'
+import store from '../../../../store'
+import { Button } from '../../../../ui'
+import { Header } from './Header'
 import { BodyContainer, Page, PageTitleContainer, PageTitleContainerText } from './stylesComponents'
 import init from './thunks/init'
-import { Header } from './Header'
 
 export interface Props {}
 
 export interface Dispatch {}
 
-const Screen02Screen: FC<Props & Dispatch & NavigationInjectedProps> = props => {
+const ProductEdit: FC<Props & Dispatch & NavigationInjectedProps> = props => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -24,12 +26,14 @@ const Screen02Screen: FC<Props & Dispatch & NavigationInjectedProps> = props => 
 			<Page>
 				<BodyContainer>
 					<PageTitleContainer>
-						<PageTitleContainerText>Второй экран</PageTitleContainerText>
+						<PageTitleContainerText>Изменить продукт</PageTitleContainerText>
 					</PageTitleContainer>
+
+					<Button name={'Hello'} activeOpacity={1} onPress={() => store().persistor.purge()} />
 				</BodyContainer>
 			</Page>
 		</>
 	)
 }
 
-export { Screen02Screen }
+export { ProductEdit }

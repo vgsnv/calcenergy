@@ -1,17 +1,7 @@
 import React, { FC } from 'react'
 import { ImageSourcePropType } from 'react-native'
 import { NavigationInjectedProps } from 'react-navigation'
-import { useDispatch } from 'react-redux'
-import {
-	EmptySpace,
-	HeaderContainer,
-	Img,
-	LButtonContainer,
-	Nav,
-	RButtonContainer,
-	Title,
-	TitleText,
-} from './stylesComponents'
+import { EmptySpace, HeaderContainer, Img, LButtonContainer, Nav, RButtonContainer } from './stylesComponents'
 
 interface Button {
 	image: ImageSourcePropType
@@ -19,7 +9,6 @@ interface Button {
 }
 
 export interface Props {
-	title: string
 	leftButton?: Button
 	rightButton?: Button
 }
@@ -27,7 +16,7 @@ export interface Props {
 export interface Dispatch {}
 
 const Header: FC<Props & Dispatch & NavigationInjectedProps> = props => {
-	const { title, leftButton, rightButton } = props
+	const { leftButton, rightButton } = props
 
 	return (
 		<>
@@ -45,10 +34,6 @@ const Header: FC<Props & Dispatch & NavigationInjectedProps> = props => {
 						</RButtonContainer>
 					)}
 				</Nav>
-
-				<Title>
-					<TitleText>{title}</TitleText>
-				</Title>
 			</HeaderContainer>
 		</>
 	)

@@ -1,5 +1,5 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
-import ProductsStack from './Products'
+import { ProductsStack } from './Products'
 
 const RootNavigator = createSwitchNavigator(
 	{

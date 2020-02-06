@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import { NavigationInjectedProps } from 'react-navigation'
 import { useDispatch, useSelector } from 'react-redux'
-import { Store } from '../../../store'
+import { Store } from '../../../../store'
 import { Header } from './Header/Header'
 import {
 	BigText,
@@ -19,12 +19,15 @@ import {
 	Right,
 	TilteTextContainer,
 	TitleText,
+	ListTitle,
+	ListTitleText,
 } from './stylesComponents'
 import init from './thunks/init'
-import toNext from './thunks/toNext'
+import toCreate from './thunks/toCreate'
+import toEdit from './thunks/toEdit'
 
-const rightImg = require('../../../assets/header_icons/Add.png')
-const forward = require('../../../assets/body/Forward.png')
+const rightImg = require('../../../../assets/header_icons/Add.png')
+const forward = require('../../../../assets/body/Forward.png')
 
 export interface Props {}
 
@@ -37,15 +40,17 @@ export const ProductList: FC<Props & Dispatch & NavigationInjectedProps> = props
 		db: { products },
 	} = useSelector((store: Store) => store)
 
-	const productList = Object.keys(products).map(key => {
-		return products[key]
-	})
+	const productList = products
+		? Object.keys(products).map(key => {
+				return products[key]
+		  })
+		: []
 
 	useEffect(() => {
 		dispatch(init())
 	}, [])
 
-	const onPressItem = () => dispatch(toNext(props.navigation))
+	const onPressItem = () => dispatch(toCreate(props.navigation, 1))
 
 	const keyExtractor = item => item.id
 
@@ -53,7 +58,7 @@ export const ProductList: FC<Props & Dispatch & NavigationInjectedProps> = props
 		const { id, title, kk, protein, fat, crbh } = item
 
 		return (
-			<Container onPress={this.onPress}>
+			<Container onPress={() => dispatch(toEdit(props.navigation, id))}>
 				<Item>
 					<Left>
 						<TilteTextContainer>
@@ -82,7 +87,6 @@ export const ProductList: FC<Props & Dispatch & NavigationInjectedProps> = props
 	}
 
 	const header = {
-		title: 'Продукты',
 		rightButton: {
 			image: rightImg,
 			onPress: onPressItem,
@@ -96,7 +100,16 @@ export const ProductList: FC<Props & Dispatch & NavigationInjectedProps> = props
 			<Header {...header} navigation={props.navigation} />
 			<Page>
 				<BodyContainer>
-					<FlatList data={productList} keyExtractor={keyExtractor} renderItem={renderItem} />
+					<FlatList
+						data={productList}
+						keyExtractor={keyExtractor}
+						renderItem={renderItem}
+						ListHeaderComponent={() => (
+							<ListTitle>
+								<ListTitleText>{'Продукты'}</ListTitleText>
+							</ListTitle>
+						)}
+					/>
 				</BodyContainer>
 			</Page>
 		</>

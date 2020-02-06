@@ -1,14 +1,12 @@
 import { createStackNavigator } from 'react-navigation-stack'
-import { ProductList } from './ProductList'
-import { Screen02Screen } from './Screen02'
+import { ProductCreate } from './ProductCreate'
+import { ProductsMainStack } from './Main'
 
-export default createStackNavigator(
+export const ProductsStack = createStackNavigator(
 	{
-		ProductList: {
-			screen: ProductList,
-		},
-		Screen02: {
-			screen: Screen02Screen,
+		ProductsMain: ProductsMainStack,
+		ProductCreate: {
+			screen: ProductCreate,
 		},
 	},
 	{

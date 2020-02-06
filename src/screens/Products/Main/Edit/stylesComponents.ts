@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import palette from '../../../../constants/palette'
 
 export const Page = styled.SafeAreaView`
 	width: 100%;
@@ -6,6 +7,7 @@ export const Page = styled.SafeAreaView`
 	justify-content: space-between;
 	align-items: center;
 	flex-direction: column;
+	background-color: ${palette.white};
 `
 
 export const BodyContainer = styled.View`
