@@ -1,14 +1,5 @@
 import styled from 'styled-components/native'
-
 import palette from '../../../../constants/palette'
-
-export const HeaderContainer = styled.View`
-	background-color: ${palette.graySuperLight};
-`
-
-export const EmptySpace = styled.View`
-	height: 45px;
-`
 
 export const Nav = styled.View`
 	height: 51px;

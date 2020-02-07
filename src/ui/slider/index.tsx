@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { PanResponder, View, ViewStyle } from 'react-native'
 
 export enum SliderDirect {
@@ -6,74 +6,90 @@ export enum SliderDirect {
 	HORIZONT = 'horizont',
 }
 
+interface StyleColors {
+	emptyColor?: string
+	fillColor?: string
+}
+
 export interface Props {
-	direct: SliderDirect
-	style?: ViewStyle
-	emptyColor: string
-	backColor: string
 	value: number
-	minValue: number
-	maxValue: number
+	minValue?: number
+	maxValue?: number
+
+	direct?: SliderDirect
+	style?: ViewStyle
+	colors?: StyleColors
+
+	onChangeValue: (val: number) => void
 }
 
-export interface Dispatch {
-	onChangeValue: (v) => void
+const defaultValues: Omit<Props, 'value' | 'onChangeValue'> = {
+	minValue: 0,
+	maxValue: 100,
+
+	direct: SliderDirect.VERTICAL,
+	style: {
+		borderRadius: 12,
+		height: 300,
+		width: 80,
+	},
+	colors: {
+		emptyColor: '#ccc',
+		fillColor: '#000',
+	},
 }
 
-interface State {
-	heightTouchOnPage: number
-	scaleUnit: number
-}
+const Slider: FC<Props> = props => {
+	const {
+		value,
+		minValue = defaultValues.minValue,
+		maxValue = defaultValues.maxValue,
 
-export default class Component extends React.Component<Props & Dispatch, State> {
-	public state = {
-		heightTouchOnPage: 0,
-		scaleUnit: 0,
-	}
+		direct = defaultValues.direct,
 
-	private panResponder = PanResponder.create({
+		style = defaultValues.style,
+		colors = defaultValues.colors,
+
+		onChangeValue,
+	} = props
+
+	const { height, width } = style
+	const { emptyColor, fillColor } = colors
+
+	const [scaleUnit, editScaleUnit] = useState(1)
+	const [heightTouchOnPage, editHeightTouchOnPage] = useState(0)
+
+	useEffect(() => {
+		const lenght = direct === SliderDirect.VERTICAL ? height : width
+
+		editScaleUnit(parseInt(lenght.toString()) / (maxValue - minValue))
+	}, [])
+
+	const panResponder = PanResponder.create({
 		onMoveShouldSetPanResponder: e => {
-			const pageD = this.props.direct === SliderDirect.VERTICAL ? e.nativeEvent.pageY : e.nativeEvent.pageX
+			const pageD = direct === SliderDirect.VERTICAL ? e.nativeEvent.pageY : e.nativeEvent.pageX
 
-			this.setState({ heightTouchOnPage: pageD })
+			editHeightTouchOnPage(pageD)
 			return true
 		},
 
 		onPanResponderMove: e => {
-			const pageD = this.props.direct === SliderDirect.VERTICAL ? e.nativeEvent.pageY : e.nativeEvent.pageX
-
-			const { value, onChangeValue, direct } = this.props
-			const { heightTouchOnPage, scaleUnit } = this.state
+			const pageD = direct === SliderDirect.VERTICAL ? e.nativeEvent.pageY : e.nativeEvent.pageX
 
 			const k = direct === SliderDirect.VERTICAL ? 1 : -1
 
-			onChangeValue(value - (k * pageD - k * heightTouchOnPage) / scaleUnit)
+			const kk = value - (k * pageD - k * heightTouchOnPage) / scaleUnit
 
-			this.setState({
-				heightTouchOnPage: pageD,
-			})
+			if (minValue <= kk && kk < maxValue) onChangeValue(Math.round(100 * kk) / 100)
+
+			editHeightTouchOnPage(pageD)
 		},
 	})
 
-	public componentDidMount = () => {
-		const { minValue, maxValue, style, direct } = this.props
-		const { height, width } = style
+	const lenghtOfFullSpace = (value - minValue) * scaleUnit
 
-		const lenght = direct === SliderDirect.VERTICAL ? height : width
-
-		this.setState({
-			scaleUnit: parseInt(lenght.toString()) / (maxValue - minValue),
-		})
-	}
-
-	public render() {
-		const { style, emptyColor, backColor, value, minValue, direct } = this.props
-
-		const { scaleUnit } = this.state
-
-		const lenghtOfFullSpace = (value - minValue) * scaleUnit
-
-		return (
+	return (
+		<>
 			<View
 				style={[
 					{
@@ -82,19 +98,21 @@ export default class Component extends React.Component<Props & Dispatch, State> 
 					},
 					style,
 				]}
-				{...this.panResponder.panHandlers}
+				{...panResponder.panHandlers}
 			>
 				<View
 					style={{
 						zIndex: 2,
 						position: 'absolute',
-						backgroundColor: backColor,
+						backgroundColor: fillColor,
 						bottom: 0,
-						height: direct === SliderDirect.VERTICAL ? lenghtOfFullSpace : style.height,
-						width: direct === SliderDirect.VERTICAL ? style.width : lenghtOfFullSpace,
+						height: direct === SliderDirect.VERTICAL ? lenghtOfFullSpace : height,
+						width: direct === SliderDirect.VERTICAL ? width : lenghtOfFullSpace,
 					}}
 				/>
 			</View>
-		)
-	}
+		</>
+	)
 }
+
+export { Slider }

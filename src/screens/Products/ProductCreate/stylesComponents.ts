@@ -4,25 +4,27 @@ import palette from '../../../constants/palette'
 export const Page = styled.SafeAreaView`
 	width: 100%;
 	height: 100%;
-	justify-content: space-between;
-	align-items: center;
 	flex-direction: column;
-	background-color: ${palette.white};
+	background-color: ${palette.graySuperLight};
+`
+
+export const HeaderContainer = styled.View`
+	flex: 1;
+`
+
+export const TitleInputContainer = styled.View`
+	flex: 1;
+	justify-content: center;
 `
 
 export const BodyContainer = styled.View`
-	flex: 1 0 auto;
-	align-items: center;
+	flex: 6;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 0 8px;
 `
 
-export const PageTitleContainer = styled.View`
-	background-color: #ccc;
-	height: 60px;
-	padding-top: 37px;
-`
-export const PageTitleContainerText = styled.Text`
-	font-size: 16px;
-	font-weight: 600;
-	line-height: 21px;
-	letter-spacing: 0.32;
+export const SliderWrapper = styled.View`
+	flex: 1;
+	align-items: center;
 `

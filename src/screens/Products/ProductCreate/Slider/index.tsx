@@ -1,13 +1,13 @@
-import * as React from 'react'
-import { Text, View } from 'react-native'
+import React, { FC } from 'react'
+import { View } from 'react-native'
 import * as ui from '../../../../ui'
-import { SliderContainer } from './stylesComponents'
+import { SliderCaption, SliderCaptionContainer, SliderContainer, SliderSmallCaption } from './stylesComponents'
 
 export interface Props {
 	value: number
 	labelName: string
 	emptyColor: string
-	backColor: string
+	fillColor: string
 	minValue: number
 	maxValue: number
 }
@@ -15,74 +15,52 @@ export interface Props {
 export interface Dispatch {
 	onChangeValue: (value: number) => void
 }
+const Slider: FC<Props & Dispatch> = props => {
+	const { value, onChangeValue, emptyColor, fillColor, maxValue, minValue, labelName } = props
 
-interface State {}
+	return (
+		<SliderContainer>
+			<SliderCaptionContainer>
+				<SliderCaption
+					style={{
+						color: fillColor,
+					}}
+				>
+					{`${value.toFixed(1).toString()}`}
+				</SliderCaption>
 
-export default class extends React.PureComponent<Props & Dispatch, State> {
-	public render() {
-		const { value, onChangeValue } = this.props
+				<SliderSmallCaption
+					style={{
+						color: fillColor,
+					}}
+				>
+					{labelName}
+				</SliderSmallCaption>
+			</SliderCaptionContainer>
 
-		return (
 			<View
 				style={{
-					height: 360,
-					flexDirection: 'column',
+					shadowColor: '#000',
+					shadowOffset: { width: 1, height: 3 },
+					shadowOpacity: 0.16,
+					shadowRadius: 2,
 				}}
 			>
-				<View
+				<ui.Slider
+					direct={ui.SliderDirect.VERTICAL}
+					colors={{ emptyColor: emptyColor, fillColor: fillColor }}
+					value={value}
+					onChangeValue={onChangeValue}
+					maxValue={maxValue}
+					minValue={minValue}
 					style={{
-						flex: 1,
-						width: 80,
-					}}
-				>
-					<Text
-						style={{
-							fontSize: 27,
-							color: this.props.backColor,
-							textAlign: 'right',
-							fontWeight: '600',
-						}}
-					>
-						{`${value.toFixed(1).toString()}`}
-					</Text>
-
-					<Text
-						style={{
-							fontSize: 11,
-							color: this.props.backColor,
-							textAlign: 'right',
-							fontWeight: '600',
-						}}
-					>
-						{this.props.labelName}
-					</Text>
-				</View>
-
-				<SliderContainer
-					style={{
-						shadowColor: '#000',
-						shadowOffset: { width: 1, height: 3 },
-						shadowOpacity: 0.16,
-						shadowRadius: 4,
+						borderRadius: 12,
 						height: 300,
+						width: 75,
 					}}
-				>
-					<ui.Slider
-						direct={ui.SliderDirect.VERTICAL}
-						emptyColor={this.props.emptyColor}
-						backColor={this.props.backColor}
-						value={value}
-						onChangeValue={onChangeValue}
-						maxValue={this.props.maxValue}
-						minValue={this.props.minValue}
-						style={{
-							borderRadius: 8,
-							height: 300,
-							width: 80,
-						}}
-					/>
-				</SliderContainer>
+				/>
 			</View>
-		)
-	}
+		</SliderContainer>
+	)
 }
+export { Slider }

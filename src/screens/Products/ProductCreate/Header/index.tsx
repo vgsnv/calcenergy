@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { NavigationInjectedProps } from 'react-navigation'
-import { EmptySpace, HeaderContainer, LButtonContainer, Nav, RButtonContainer, Title } from './stylesComponents'
+import { LButtonContainer, Nav, RButtonContainer, Title } from './stylesComponents'
 
 interface Button {
 	title: string
@@ -19,21 +19,18 @@ const Header: FC<Props & Dispatch & NavigationInjectedProps> = props => {
 
 	return (
 		<>
-			<HeaderContainer>
-				<EmptySpace />
-				<Nav>
-					{leftButton && (
-						<LButtonContainer onPress={leftButton.onPress}>
-							<Title>{leftButton.title}</Title>
-						</LButtonContainer>
-					)}
-					{rightButton && (
-						<RButtonContainer onPress={rightButton.onPress}>
-							<Title>{rightButton.title}</Title>
-						</RButtonContainer>
-					)}
-				</Nav>
-			</HeaderContainer>
+			<Nav>
+				{leftButton && (
+					<LButtonContainer onPress={leftButton.onPress}>
+						<Title>{leftButton.title}</Title>
+					</LButtonContainer>
+				)}
+				{rightButton && (
+					<RButtonContainer onPress={rightButton.onPress}>
+						<Title>{rightButton.title}</Title>
+					</RButtonContainer>
+				)}
+			</Nav>
 		</>
 	)
 }

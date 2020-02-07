@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useState } from 'react'
-import { StatusBar, View } from 'react-native'
+import { StatusBar } from 'react-native'
 import { NavigationInjectedProps } from 'react-navigation'
 import { useDispatch } from 'react-redux'
 import palette from '../../../constants/palette'
 import * as ui from '../../../ui'
 import { Header } from './Header'
-import Slider from './Slider'
-import { BodyContainer, Page } from './stylesComponents'
+import { Slider } from './Slider'
+import { BodyContainer, HeaderContainer, Page, SliderWrapper, TitleInputContainer } from './stylesComponents'
 import cancel from './thunks/cancel'
 import done from './thunks/done'
 import init from './thunks/init'
@@ -14,8 +14,6 @@ import init from './thunks/init'
 export interface Props {}
 
 export interface Dispatch {}
-
-const validateNutrientValue = (minValue, value, maxValue) => minValue <= value && value < +maxValue
 
 const ProductCreate: FC<Props & Dispatch & NavigationInjectedProps> = props => {
 	const dispatch = useDispatch()
@@ -64,74 +62,62 @@ const ProductCreate: FC<Props & Dispatch & NavigationInjectedProps> = props => {
 		<>
 			<StatusBar barStyle="dark-content" />
 
-			<Header {...header} navigation={props.navigation} />
 			<Page>
-				<BodyContainer>
+				<HeaderContainer>
+					<Header {...header} navigation={props.navigation} />
+				</HeaderContainer>
+
+				<TitleInputContainer>
 					<ui.Input {...titleInput} />
-					<View
-						style={{
-							flexDirection: 'row',
-							justifyContent: 'space-around',
-							paddingLeft: 8,
-							paddingRight: 8,
-						}}
-					>
+				</TitleInputContainer>
+				<BodyContainer>
+					<SliderWrapper>
 						<Slider
 							value={proteinValue}
 							labelName={'Белки'}
 							minValue={0}
 							maxValue={40}
-							onChangeValue={value => {
-								if (validateNutrientValue(0, value, 40)) {
-									editProteinValue(value)
-								}
-							}}
+							onChangeValue={value => editProteinValue(value)}
 							emptyColor={palette.nutrients.proteinLight}
-							backColor={palette.nutrients.protein}
+							fillColor={palette.nutrients.protein}
 						/>
+					</SliderWrapper>
 
+					<SliderWrapper>
 						<Slider
 							value={fatValue}
 							labelName={'Жиры'}
 							minValue={0}
 							maxValue={100}
-							onChangeValue={value => {
-								if (validateNutrientValue(0, value, 100)) {
-									editFatValue(value)
-								}
-							}}
+							onChangeValue={value => editFatValue(value)}
 							emptyColor={palette.nutrients.fatLight}
-							backColor={palette.nutrients.fat}
+							fillColor={palette.nutrients.fat}
 						/>
+					</SliderWrapper>
 
+					<SliderWrapper>
 						<Slider
 							value={carbonValue}
 							labelName={'Углеводы'}
 							minValue={0}
 							maxValue={100}
-							onChangeValue={value => {
-								if (validateNutrientValue(0, value, 100)) {
-									editCarbonValue(value)
-								}
-							}}
+							onChangeValue={value => editCarbonValue(value)}
 							emptyColor={palette.nutrients.crbhLight}
-							backColor={palette.nutrients.crbh}
+							fillColor={palette.nutrients.crbh}
 						/>
+					</SliderWrapper>
 
+					<SliderWrapper>
 						<Slider
 							value={kkValue}
-							labelName={'Килокалории'}
+							labelName={'ККалории'}
 							minValue={0}
 							maxValue={500}
-							onChangeValue={value => {
-								if (validateNutrientValue(0, value, 100)) {
-									editKkValue(value)
-								}
-							}}
+							onChangeValue={value => editKkValue(value)}
 							emptyColor={palette.nutrients.kkLight}
-							backColor={palette.nutrients.kk}
+							fillColor={palette.nutrients.kk}
 						/>
-					</View>
+					</SliderWrapper>
 				</BodyContainer>
 			</Page>
 		</>
