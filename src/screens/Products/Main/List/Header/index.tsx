@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { ImageSourcePropType } from 'react-native'
 import { NavigationInjectedProps } from 'react-navigation'
-import { EmptySpace, HeaderContainer, Img, LButtonContainer, Nav, RButtonContainer } from './stylesComponents'
+import { Img, LButtonContainer, Nav, RButtonContainer } from './stylesComponents'
 
 interface Button {
 	image: ImageSourcePropType
@@ -20,21 +20,18 @@ const Header: FC<Props & Dispatch & NavigationInjectedProps> = props => {
 
 	return (
 		<>
-			<HeaderContainer>
-				<EmptySpace />
-				<Nav>
-					{leftButton && (
-						<LButtonContainer onPress={leftButton.onPress}>
-							<Img source={leftButton.image} />
-						</LButtonContainer>
-					)}
-					{rightButton && (
-						<RButtonContainer onPress={rightButton.onPress}>
-							<Img source={rightButton.image} />
-						</RButtonContainer>
-					)}
-				</Nav>
-			</HeaderContainer>
+			<Nav>
+				{leftButton && (
+					<LButtonContainer onPress={leftButton.onPress}>
+						<Img source={leftButton.image} />
+					</LButtonContainer>
+				)}
+				{rightButton && (
+					<RButtonContainer onPress={rightButton.onPress}>
+						<Img source={rightButton.image} />
+					</RButtonContainer>
+				)}
+			</Nav>
 		</>
 	)
 }

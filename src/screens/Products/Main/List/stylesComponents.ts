@@ -4,10 +4,16 @@ import palette from '../../../../constants/palette'
 export const Page = styled.SafeAreaView`
 	width: 100%;
 	height: 100%;
+	flex-direction: column;
+	background-color: ${palette.white};
+`
+
+export const HeaderContainer = styled.View`
+	flex: 1;
 `
 
 export const BodyContainer = styled.View`
-	flex: 1;
+	flex: 15;
 	flex-direction: column;
 `
 

@@ -70,6 +70,7 @@ const ProductCreate: FC<Props & Dispatch & NavigationInjectedProps> = props => {
 				<TitleInputContainer>
 					<ui.Input {...titleInput} />
 				</TitleInputContainer>
+
 				<BodyContainer>
 					<SliderWrapper>
 						<Slider

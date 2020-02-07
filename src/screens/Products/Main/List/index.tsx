@@ -12,15 +12,16 @@ import {
 	DetailContainer,
 	DetailItem,
 	DetailText,
+	HeaderContainer,
 	Img,
 	Item,
 	Left,
+	ListTitle,
+	ListTitleText,
 	Page,
 	Right,
 	TilteTextContainer,
 	TitleText,
-	ListTitle,
-	ListTitleText,
 } from './stylesComponents'
 import init from './thunks/init'
 import toCreate from './thunks/toCreate'
@@ -97,8 +98,11 @@ export const ProductList: FC<Props & Dispatch & NavigationInjectedProps> = props
 		<>
 			<StatusBar barStyle="dark-content" />
 
-			<Header {...header} navigation={props.navigation} />
 			<Page>
+				<HeaderContainer>
+					<Header {...header} navigation={props.navigation} />
+				</HeaderContainer>
+
 				<BodyContainer>
 					<FlatList
 						data={productList}
