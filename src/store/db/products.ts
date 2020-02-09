@@ -16,15 +16,16 @@ export interface Products {
 }
 
 enum ActionType {
-	CATEGORIES_LOAD = 'DB/CATEGORIES_LOAD',
 	PRODUCTS_ADD = 'DB/PRODUCTS_ADD',
+	PRODUCTS_SAVE = 'DB/PRODUCTS_SAVE',
 }
 
-export const categoriesLoad = () => ({
-	type: ActionType.CATEGORIES_LOAD,
+export const productsAdd = (data: Product) => ({
+	type: ActionType.PRODUCTS_ADD,
+	data,
 })
 
-export const productsAdd = (data: Product) => ({
+export const productsSave = (data: Product) => ({
 	type: ActionType.PRODUCTS_ADD,
 	data,
 })
@@ -38,11 +39,17 @@ export default (state: Products = defaultProducts, action) => {
 		case ActionType.PRODUCTS_ADD:
 			const newProduct = action.data
 			const { id } = newProduct
+
 			return {
 				...state,
 				[id]: newProduct,
 			}
 
+		case ActionType.PRODUCTS_SAVE:
+			return {
+				...state,
+				[id]: newProduct,
+			}
 		default:
 			return state
 	}

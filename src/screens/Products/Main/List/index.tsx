@@ -51,8 +51,6 @@ export const ProductList: FC<Props & Dispatch & NavigationInjectedProps> = props
 		dispatch(init())
 	}, [])
 
-	const onPressItem = () => dispatch(toCreate(props.navigation, 1))
-
 	const keyExtractor = item => item.id
 
 	const renderItem = ({ item }) => {
@@ -90,7 +88,7 @@ export const ProductList: FC<Props & Dispatch & NavigationInjectedProps> = props
 	const header = {
 		rightButton: {
 			image: rightImg,
-			onPress: onPressItem,
+			onPress: () => dispatch(toCreate(props.navigation)),
 		},
 	}
 

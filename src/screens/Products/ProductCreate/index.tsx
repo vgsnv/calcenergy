@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import { StatusBar } from 'react-native'
-import { NavigationInjectedProps } from 'react-navigation'
+import { NavigationStackScreenProps } from 'react-navigation-stack'
 import { useDispatch } from 'react-redux'
 import palette from '../../../constants/palette'
 import * as ui from '../../../ui'
@@ -10,12 +10,17 @@ import { BodyContainer, HeaderContainer, Page, SliderWrapper, TitleInputContaine
 import cancel from './thunks/cancel'
 import done from './thunks/done'
 import init from './thunks/init'
+const uuidv1 = require('uuid/v1')
+
+type Params = {}
+
+type ScreenProps = {}
 
 export interface Props {}
 
 export interface Dispatch {}
 
-const ProductCreate: FC<Props & Dispatch & NavigationInjectedProps> = props => {
+const ProductCreate: FC<Props & Dispatch & NavigationStackScreenProps<Params, ScreenProps>> = props => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -34,6 +39,7 @@ const ProductCreate: FC<Props & Dispatch & NavigationInjectedProps> = props => {
 			onPress: () =>
 				dispatch(
 					done(props.navigation, {
+						id: uuidv1(),
 						title: productTitle,
 						kk: kkValue,
 						protein: proteinValue,
