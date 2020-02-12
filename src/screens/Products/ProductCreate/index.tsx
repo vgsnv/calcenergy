@@ -1,9 +1,12 @@
+import { RouteProp } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 import React, { FC, useEffect, useState } from 'react'
 import { StatusBar } from 'react-native'
 import { NavigationStackScreenProps } from 'react-navigation-stack'
 import { useDispatch } from 'react-redux'
 import palette from '../../../constants/palette'
 import * as ui from '../../../ui'
+import { ProductsNavigatorParamList } from '../ProductsNavigator'
 import { Header } from './Header'
 import { Slider } from './Slider'
 import { BodyContainer, HeaderContainer, Page, SliderWrapper, TitleInputContainer } from './stylesComponents'
@@ -12,11 +15,18 @@ import done from './thunks/done'
 import init from './thunks/init'
 const uuidv1 = require('uuid/v1')
 
+export type ProductCreateNavigationProp = StackNavigationProp<ProductsNavigatorParamList, 'ProductCreate'>
+
+export type ProductCreateRouteProp = RouteProp<ProductsNavigatorParamList, 'ProductCreate'>
+
 type Params = {}
 
 type ScreenProps = {}
 
-export interface Props {}
+export interface Props {
+	route: ProductCreateRouteProp
+	navigation: ProductCreateNavigationProp
+}
 
 export interface Dispatch {}
 

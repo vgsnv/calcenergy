@@ -1,7 +1,7 @@
-import { NavigationActions } from 'react-navigation'
+import { ProductEditNavigationProp } from '../../Edit'
 
-export default (nav, id) => async dispatch => {
+export default (nav: ProductEditNavigationProp, id) => async dispatch => {
 	console.info('THUNK: TO_EDIT PRODUCT_LIST')
 
-	nav.dispatch(NavigationActions.navigate({ routeName: 'ProductEdit', params: { id } }))
+	nav.navigate('ProductEdit', { id })
 }

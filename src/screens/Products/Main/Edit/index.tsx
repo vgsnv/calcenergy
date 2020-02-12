@@ -1,10 +1,12 @@
+import { RouteProp } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 import React, { FC, useEffect, useState } from 'react'
 import { StatusBar } from 'react-native'
-import { NavigationStackScreenProps } from 'react-navigation-stack'
 import { useDispatch, useSelector } from 'react-redux'
 import palette from '../../../../constants/palette'
 import { Store } from '../../../../store'
 import * as ui from '../../../../ui'
+import { ProductsMainNavigatorParamList } from '../ProductsMainNavigatorStack'
 import { Header } from './Header'
 import { Slider } from './Slider'
 import { BodyContainer, HeaderContainer, Page, SliderWrapper, TitleInputContainer } from './stylesComponents'
@@ -12,15 +14,18 @@ import cancel from './thunks/cancel'
 import done from './thunks/done'
 import init from './thunks/init'
 
-type Params = { id: string }
+export type ProductEditNavigationProp = StackNavigationProp<ProductsMainNavigatorParamList, 'ProductEdit'>
 
-type ScreenProps = {}
+export type ProductEditRouteProp = RouteProp<ProductsMainNavigatorParamList, 'ProductEdit'>
 
-export interface Props {}
+export interface Props {
+	route: ProductEditRouteProp
+	navigation: ProductEditNavigationProp
+}
 
 export interface Dispatch {}
 
-const ProductEdit: FC<Props & Dispatch & NavigationStackScreenProps<Params, ScreenProps>> = props => {
+const ProductEdit: FC<Props & Dispatch> = props => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -28,10 +33,8 @@ const ProductEdit: FC<Props & Dispatch & NavigationStackScreenProps<Params, Scre
 	}, [])
 
 	const {
-		navigation: {
-			state: {
-				params: { id },
-			},
+		route: {
+			params: { id },
 		},
 	} = props
 
@@ -39,13 +42,13 @@ const ProductEdit: FC<Props & Dispatch & NavigationStackScreenProps<Params, Scre
 		db: { products },
 	} = useSelector((store: Store) => store)
 
-	const product = products[id]
+	const { title, protein, fat, crbh, kk } = products[id]
 
-	const [productTitle, editProductTitle] = useState(product.title)
-	const [proteinValue, editProteinValue] = useState(product.protein)
-	const [fatValue, editFatValue] = useState(product.fat)
-	const [carbonValue, editCarbonValue] = useState(product.crbh)
-	const [kkValue, editKkValue] = useState(product.kk)
+	const [productTitle, editProductTitle] = useState(title)
+	const [proteinValue, editProteinValue] = useState(protein)
+	const [fatValue, editFatValue] = useState(fat)
+	const [carbonValue, editCarbonValue] = useState(crbh)
+	const [kkValue, editKkValue] = useState(kk)
 
 	const header = {
 		rightButton: {
@@ -84,7 +87,7 @@ const ProductEdit: FC<Props & Dispatch & NavigationStackScreenProps<Params, Scre
 
 			<Page>
 				<HeaderContainer>
-					<Header {...header} navigation={props.navigation} />
+					<Header {...header} />
 				</HeaderContainer>
 
 				<TitleInputContainer>

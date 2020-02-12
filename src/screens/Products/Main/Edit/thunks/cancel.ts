@@ -1,6 +1,7 @@
-import { NavigationActions } from 'react-navigation'
+import { ProductEditNavigationProp } from '../index'
 
-export default nav => async (dispatch, getState) => {
+export default (nav: ProductEditNavigationProp) => async (dispatch, getState) => {
 	console.info('THUNK: CANCEL PRODUCT_CREATE')
-	nav.dispatch(NavigationActions.back())
+
+	nav.goBack()
 }

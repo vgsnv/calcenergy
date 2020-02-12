@@ -1,7 +1,7 @@
-import { NavigationActions } from 'react-navigation'
+import { ProductCreateNavigationProp } from '../../../ProductCreate'
 
-export default nav => async dispatch => {
+export default (nav: ProductCreateNavigationProp) => async dispatch => {
 	console.info('THUNK: TO_CREATE PRODUCT_LIST')
 
-	nav.dispatch(NavigationActions.navigate({ routeName: 'ProductCreate' }))
+	nav.navigate('ProductCreate')
 }

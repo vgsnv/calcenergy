@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { NavigationInjectedProps } from 'react-navigation'
 import { LButtonContainer, Nav, RButtonContainer, Title } from './stylesComponents'
 
 interface Button {
@@ -14,7 +13,7 @@ export interface Props {
 
 export interface Dispatch {}
 
-const Header: FC<Props & Dispatch & NavigationInjectedProps> = props => {
+const Header: FC<Props & Dispatch> = props => {
 	const { leftButton, rightButton } = props
 
 	return (

@@ -1,7 +1,7 @@
-import { NavigationActions } from 'react-navigation'
 import { productsAdd } from '../../../../store/db/products'
+import { ProductCreateNavigationProp } from '../index'
 
-export default (nav, newProduct) => async (dispatch, getState) => {
+export default (nav: ProductCreateNavigationProp, newProduct) => async (dispatch, getState) => {
 	console.info('THUNK: DONE PRODUCT_CREATE', newProduct)
 
 	dispatch(
@@ -10,5 +10,5 @@ export default (nav, newProduct) => async (dispatch, getState) => {
 		})
 	)
 
-	nav.dispatch(NavigationActions.back())
+	nav.goBack()
 }
