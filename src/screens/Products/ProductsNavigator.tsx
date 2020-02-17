@@ -1,9 +1,7 @@
-import React from 'react'
-
-import { ProductCreate } from './ProductCreate'
-import { ProductsMainNavigatorStack } from './Main/ProductsMainNavigatorStack'
-
 import { createStackNavigator } from '@react-navigation/stack'
+import React from 'react'
+import { ProductsMainNavigatorStack } from './Main/ProductsMainNavigatorStack'
+import { ProductCreate } from './ProductCreate'
 
 export type ProductsNavigatorParamList = {
 	ProductCreate: undefined
