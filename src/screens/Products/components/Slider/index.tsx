@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { View } from 'react-native'
-import * as ui from '../../../../../ui'
+import * as ui from '../../../../ui'
 import { SliderCaption, SliderCaptionContainer, SliderContainer, SliderSmallCaption } from './stylesComponents'
 
 export interface Props {
@@ -15,7 +15,8 @@ export interface Props {
 export interface Dispatch {
 	onChangeValue: (value: number) => void
 }
-const Slider: FC<Props & Dispatch> = props => {
+
+export const Slider: FC<Props & Dispatch> = props => {
 	const { value, onChangeValue, emptyColor, fillColor, maxValue, minValue, labelName } = props
 
 	return (
@@ -63,4 +64,3 @@ const Slider: FC<Props & Dispatch> = props => {
 		</SliderContainer>
 	)
 }
-export { Slider }

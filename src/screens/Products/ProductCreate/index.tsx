@@ -2,13 +2,12 @@ import { RouteProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { FC, useEffect, useState } from 'react'
 import { StatusBar } from 'react-native'
-import { NavigationStackScreenProps } from 'react-navigation-stack'
 import { useDispatch } from 'react-redux'
 import palette from '../../../constants/palette'
 import * as ui from '../../../ui'
 import { ProductsNavigatorParamList } from '../ProductsNavigator'
 import { Header } from './Header'
-import { Slider } from './Slider'
+import { Slider } from '../components/Slider'
 import { BodyContainer, HeaderContainer, Page, SliderWrapper, TitleInputContainer } from './stylesComponents'
 import cancel from './thunks/cancel'
 import done from './thunks/done'
@@ -19,10 +18,6 @@ export type ProductCreateNavigationProp = StackNavigationProp<ProductsNavigatorP
 
 export type ProductCreateRouteProp = RouteProp<ProductsNavigatorParamList, 'ProductCreate'>
 
-type Params = {}
-
-type ScreenProps = {}
-
 export interface Props {
 	route: ProductCreateRouteProp
 	navigation: ProductCreateNavigationProp
@@ -30,7 +25,7 @@ export interface Props {
 
 export interface Dispatch {}
 
-const ProductCreate: FC<Props & Dispatch & NavigationStackScreenProps<Params, ScreenProps>> = props => {
+export const ProductCreate: FC<Props & Dispatch> = props => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -140,5 +135,3 @@ const ProductCreate: FC<Props & Dispatch & NavigationStackScreenProps<Params, Sc
 		</>
 	)
 }
-
-export { ProductCreate }

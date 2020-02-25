@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { NavigationInjectedProps } from 'react-navigation'
 import { LButtonContainer, Nav, RButtonContainer, Title } from './stylesComponents'
+import { ProductCreateNavigationProp } from '../index'
 
 interface Button {
 	title: string
@@ -10,11 +10,12 @@ interface Button {
 export interface Props {
 	leftButton?: Button
 	rightButton?: Button
+	navigation: ProductCreateNavigationProp
 }
 
 export interface Dispatch {}
 
-const Header: FC<Props & Dispatch & NavigationInjectedProps> = props => {
+export const Header: FC<Props & Dispatch> = props => {
 	const { leftButton, rightButton } = props
 
 	return (
@@ -34,5 +35,3 @@ const Header: FC<Props & Dispatch & NavigationInjectedProps> = props => {
 		</>
 	)
 }
-
-export { Header }

@@ -1,36 +1,47 @@
 import React, { FC } from 'react'
-import { ImageSourcePropType } from 'react-native'
-import { ProductListNavigationProp } from '../index'
-import { Img, LButtonContainer, Nav, RButtonContainer } from './stylesComponents'
+import {
+	ButtonTitle,
+	HeaderTitleContainer,
+	HeaderTitleText,
+	LButtonContainer,
+	Nav,
+	RButtonContainer,
+} from './stylesComponents'
 
 interface Button {
-	image: ImageSourcePropType
+	title: string
 	onPress: () => void
 }
 
 export interface Props {
 	leftButton?: Button
+	title?: string
 	rightButton?: Button
-	navigation: ProductListNavigationProp
 }
 
 export interface Dispatch {}
 
 export const Header: FC<Props & Dispatch> = props => {
-	const { leftButton, rightButton } = props
+	const { leftButton, rightButton, title } = props
 
 	return (
 		<>
 			<Nav>
 				{leftButton && (
 					<LButtonContainer onPress={leftButton.onPress}>
-						<Img source={leftButton.image} />
+						<ButtonTitle>{leftButton.title}</ButtonTitle>
 					</LButtonContainer>
+				)}
+
+				{title && (
+					<HeaderTitleContainer>
+						<HeaderTitleText>{title}</HeaderTitleText>
+					</HeaderTitleContainer>
 				)}
 
 				{rightButton && (
 					<RButtonContainer onPress={rightButton.onPress}>
-						<Img source={rightButton.image} />
+						<ButtonTitle>{rightButton.title}</ButtonTitle>
 					</RButtonContainer>
 				)}
 			</Nav>

@@ -2,7 +2,6 @@ import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import { ProductEdit } from './Edit'
 import { ProductList } from './List'
-import { BottomTabBar } from '@react-navigation/bottom-tabs'
 
 export type ProductsMainNavigatorParamList = {
 	ProductList: undefined

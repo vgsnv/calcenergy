@@ -8,7 +8,7 @@ import { Store } from '../../../../store'
 import * as ui from '../../../../ui'
 import { ProductsMainNavigatorParamList } from '../ProductsMainNavigatorStack'
 import { Header } from './Header'
-import { Slider } from './Slider'
+import { Slider } from '../../components/Slider'
 import { BodyContainer, HeaderContainer, Page, SliderWrapper, TitleInputContainer } from './stylesComponents'
 import cancel from './thunks/cancel'
 import done from './thunks/done'
@@ -25,7 +25,7 @@ export interface Props {
 
 export interface Dispatch {}
 
-const ProductEdit: FC<Props & Dispatch> = props => {
+export const ProductEdit: FC<Props & Dispatch> = props => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -147,5 +147,3 @@ const ProductEdit: FC<Props & Dispatch> = props => {
 		</>
 	)
 }
-
-export { ProductEdit }

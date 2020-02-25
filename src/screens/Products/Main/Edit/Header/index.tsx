@@ -13,7 +13,7 @@ export interface Props {
 
 export interface Dispatch {}
 
-const Header: FC<Props & Dispatch> = props => {
+export const Header: FC<Props & Dispatch> = props => {
 	const { leftButton, rightButton } = props
 
 	return (
@@ -33,5 +33,3 @@ const Header: FC<Props & Dispatch> = props => {
 		</>
 	)
 }
-
-export { Header }

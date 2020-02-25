@@ -1,11 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
-import { ProductsNavigatorStack } from './Products/ProductsNavigator'
-import { View, Text } from 'react-native'
+import { ElseNavigatorStack } from './Else/ElseNavigator'
 import { Img } from './Products/Main/List/Header/stylesComponents'
-
-const Stack = createStackNavigator()
+import { ProductsNavigatorStack } from './Products/ProductsNavigator'
 
 const Tab = createBottomTabNavigator()
 
@@ -13,14 +10,6 @@ const LentaIcon = require('../assets/tabs/products/products.png')
 const LentaIconP = require('../assets/tabs/products/products-press.png')
 const HomeIcon = require('../assets/tabs/settings/settings.png')
 const HomeIconP = require('../assets/tabs/settings/settings-press.png')
-
-function HomeScreen() {
-	return (
-		<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-			<Text>Home!</Text>
-		</View>
-	)
-}
 
 export const Root = () => {
 	return (
@@ -71,7 +60,7 @@ export const Root = () => {
 			}}
 		>
 			<Tab.Screen name="ProductsNavigatorStack" component={ProductsNavigatorStack} />
-			<Tab.Screen name="Home" component={HomeScreen} />
+			<Tab.Screen name="Home" component={ElseNavigatorStack} />
 		</Tab.Navigator>
 	)
 }
